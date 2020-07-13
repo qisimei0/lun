@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    ul li{
+      list-style: none;
+    }
+    div img{
+      height: 350px;
+      width: 1254;
+      position: absolute;
+      top: 0;
+      transform: rotateX(30deg);
+      opacity: 0;
+    }
+    .active img{
+      width: 1254px;
+      height: 350px;
+      opacity: 1;
+      transform: rotateX(360deg);
+
+      transition: all 1.5s linear;
+    }
+    .con{
+      position: relative;
+      width: 1254px;
+      height: 350px;
+      margin: 0 auto;
+    }
+    .bar{
+      background-color: rgba(0,0,0,0.3);
+      position: absolute;
+      bottom: 20px;
+      left: 0px;
+      float: left;
+      color: white;
+      width: 435px;
+      border-radius: 15px;
+      margin-left: 400px;
+    }
+    .bar>li>ul{
+      float: left;
+      font-size: 12px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .bar>li>ul>li{
+      float: left;
+    }
+    .bar>li>ul>li:first-child{
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin-top: 3px;
+    }
+    .bar>li>ul>li:nth-child(2){
+      padding: 0px 5px;
+      line-height: 15px;
+    }
+     #one{
+       background: tomato;
+     }  
+     .two{
+       color: tomato;
+     }
+    
+  </style>
+</head>
+<body>
+  <div class="con">
+  <div class="active" id="con1">
+    <img src="images/1.jpg" alt="">
+  </div>
+  <div id="con2">
+    <img src="images/2.jpg" alt="">
+  </div>
+  <div id="con3">
+    <img src="images/3.jpg" alt="">
+  </div>
+  <div id="con4">
+    <img src="images/4.jpg" alt="">
+  </div>
+  <div id="con5">
+    <img src="images/5.jpg" alt="">
+  </div>
+  <div id="con6">
+    <img src="images/6.jpg" alt="">
+  </div>
+  <ul class="bar">
+    <li>
+      <ul data-myid="on" data-id="con1">
+        <li id="one"></li>
+        <li class="two">美国</li>
+      </ul>
+    </li>
+    <li>
+      <ul data-myid="on" data-id="con2">
+        <li></li>
+        <li>加拿大</li>
+      </ul>
+    </li>
+    <li>
+      <ul data-myid="on" data-id="con3">
+        <li></li>
+        <li>芬兰</li>
+      </ul>
+    </li>
+    <li>
+      <ul data-myid="on" data-id="con4">
+        <li></li>
+        <li>泰国</li>
+      </ul>
+    </li>
+    <li>
+      <ul data-myid="on" data-id="con5">
+        <li></li>
+        <li>阿根廷</li>
+      </ul>
+    </li>
+    <li>
+      <ul data-myid="on" data-id="con6">
+        <li></li>
+        <li>瓦努阿图</li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+  <script>
+    var lis=document.querySelectorAll(`[data-myid=on]`);
+    for(var li of lis){
+      li.onclick=function(){
+        var con=this.parentNode.parentNode.parentNode;
+        var pngid=this.getAttribute(`data-id`);
+        var png=document.getElementById(pngid);
+        var cla=con.children;
+          for(var i=0;i<cla.length-1;i++){
+            if(cla[i].id!==png){
+              cla[i].className="";
+            }
+            
+          }
+        png.className="active";
+        var one=document.querySelector("div.con>ul.bar>li>ul>li#one");
+        if(one!==null){
+          one.id="";
+        }
+        var j=this.firstElementChild;
+        j.id="one";
+        var two=document.querySelector("div.con>ul.bar>li>ul>li.two");
+        if(two!==null){
+         two.className="";
+        }
+        var j2=this.lastElementChild;
+        j2.className="two";
+      }
+    }
+  </script>
+</body>
+</html>
